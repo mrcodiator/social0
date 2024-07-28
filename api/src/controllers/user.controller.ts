@@ -196,7 +196,7 @@ export async function sendEmail(req: Request, res: Response) {
         //     return sendResponse(res, errorMessages.SERVER_ERROR);
         // }
 
-        return sendResponse(res, successMessages.OTP_SENT, { email, otp });
+        return sendResponse(res, successMessages.OTP_SENT);
     } catch (error) {
         console.log(error);
         return sendResponse(res, errorMessages.SERVER_ERROR);

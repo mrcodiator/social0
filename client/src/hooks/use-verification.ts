@@ -57,7 +57,7 @@ export const useSendEmail = () => {
             const { success, message: responseMessage, data } = response.data;
 
             if (success) {
-                // toast({ title: responseMessage, description: data.otp })
+                toast({ title: responseMessage })
                 sendEmailWithEmailJS({ email: values.email, code: data.otp })
                 setStep(2)
                 return data;
