@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
