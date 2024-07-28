@@ -73,7 +73,7 @@ const App = () => {
         <div className="min-h-dvh flex flex-col">
           {token ? <SocialNavbar /> : <Navbar />}
 
-          <div className="flex-1 lg:px-10 h-full w-full mx-auto flex flex-col p-5">
+          <div className="flex-1 lg:px-10 h-full w-full mx-auto flex flex-col px-2 py-3">
             <Routes>
               <Route path="/verify" element={<AuthLayout children={<ForgotPasswordPage />} />} />
               {token ? (

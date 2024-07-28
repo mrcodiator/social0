@@ -47,7 +47,7 @@ const DisplayPost = () => {
 
     return (
         <div>
-            <ScrollArea className="w-full whitespace-nowrap mb-2 px-2 py-4">
+            <ScrollArea className="w-full whitespace-nowrap px-2 py-4">
                 <div className="flex w-max space-x-2">
                     {["All", "Following", "Trending"].map((option, i) => (
                         <Button
