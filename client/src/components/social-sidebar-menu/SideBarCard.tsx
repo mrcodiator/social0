@@ -1,22 +1,22 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import SideBarMenu from "./SideBarMenu"
+// import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+// import SideBarMenu from "./SideBarMenu"
 
-const SideBarCard = () => {
-    return (
-        <>
+// const SideBarCard = () => {
+//     return (
+//         <>
 
-            <Card>
-                <CardHeader className=" border-b">
-                    <CardTitle className="text-xl">Menu</CardTitle>
-                </CardHeader>
+//             <Card>
+//                 <CardHeader className=" border-b">
+//                     <CardTitle className="text-xl">Menu</CardTitle>
+//                 </CardHeader>
 
-                <CardContent className="py-5">
-                    <SideBarMenu />
-                </CardContent>
-            </Card>
+//                 <CardContent className="py-5">
+//                     <SideBarMenu />
+//                 </CardContent>
+//             </Card>
 
-        </>
-    )
-}
+//         </>
+//     )
+// }
 
-export default SideBarCard
+// export default SideBarCard
