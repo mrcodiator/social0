@@ -38,10 +38,12 @@ const PostCard = ({ post }: { post: Post }) => {
             <CardHeader className="  w-full px-0">
                 <div className="flex items-center gap-2 justify-between">
                     <div className="flex items-center gap-2">
-                        <Avatar>
-                            <AvatarImage src={post.user?.logo} />
-                            <AvatarFallback>{post.user?.name?.slice(0, 2) || post.user.username.slice(0, 2)}</AvatarFallback>
-                        </Avatar>
+                        <Link to={`/user/@` + post.user?.username}>
+                            <Avatar>
+                                <AvatarImage src={post.user?.logo} />
+                                <AvatarFallback>{post.user?.name?.slice(0, 2) || post.user.username.slice(0, 2)}</AvatarFallback>
+                            </Avatar>
+                        </Link>
                         <div>
                             <UserHoverCard user={post.user} />
                             <p className=" text-muted-foreground text-xs md:text-sm">
