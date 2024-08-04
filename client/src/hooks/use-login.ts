@@ -28,7 +28,6 @@ export const useLoginUser = () => {
 
         try {
             const response = await axios.post(`${baseUrl}user/login`, values);
-            console.log("response", response);
 
             const { success, message: responseMessage, data } = response.data;
 

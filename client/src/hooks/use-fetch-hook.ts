@@ -51,6 +51,7 @@ export const useFetchData = <T = unknown>(url: string | undefined): UseFetchData
                 if (err.response?.status === 401) {
                     toast({ title: "Unauthorized. Please login.", variant: "destructive" });
                     setAuth(false);
+                    localStorage.removeItem("token");
                 }
                 const errorMessage = err.response?.data?.message || "An error occurred.";
                 toast({ title: errorMessage, variant: "destructive" });

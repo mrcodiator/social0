@@ -45,10 +45,6 @@ const App = () => {
           if (res.data.success) {
             setAuth(true);
             setUser(res.data.data);
-          } else {
-            localStorage.removeItem("token");
-            setAuth(false);
-            setUser(undefined);
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -59,9 +55,6 @@ const App = () => {
       };
 
       fetchUser();
-    } else {
-      setAuth(false);
-      setUser(undefined);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, auth, loading]);

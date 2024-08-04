@@ -26,7 +26,6 @@ export const useRegisterUser = () => {
         setLoading(true)
         try {
             const response = await axios.post(`${baseUrl}user/register`, values);
-            console.log("response", response);
 
             const { success, message: responseMessage } = response.data;
 
