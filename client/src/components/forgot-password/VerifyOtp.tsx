@@ -63,7 +63,7 @@ export default function VerifyOtp() {
                             <Button onClick={() => setStep(1)} variant={"secondary"}>Resend</Button>
 
                             <Button type="submit" disabled={loading}>
-                                {loading ? <><Loader2 className='h-4 w-4 mr-2' />wait...</>
+                                {loading ? <><Loader2 className='h-4 w-4 mr-2 animate-spin' />wait...</>
                                     :
                                     <>Verify</>
                                 }

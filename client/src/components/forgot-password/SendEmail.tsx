@@ -43,7 +43,7 @@ const SendEmail = () => {
                             </Link>
 
                             <Button type="submit" disabled={loading}>
-                                {loading ? <><Loader2 className='h-4 w-4 mr-2' />wait...</>
+                                {loading ? <><Loader2 className='h-4 w-4 mr-2 animate-spin' />wait...</>
                                     :
                                     <>Send</>
                                 }
