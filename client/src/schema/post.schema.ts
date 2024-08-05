@@ -7,13 +7,10 @@ export const postSchema = z.object({
     content: z.string().min(1, "content is required").max(2000, "Post text is too long"),
     media:
         z.instanceof(File)
-            .refine((file) => file !== undefined, {
-                message: 'File is required'
+            .refine((file) => file === undefined || file.size <= MAX_UPLOAD_SIZE, {
+                message: "'File size must be less than 3MB'"
             })
-            .refine((file) => file.size <= MAX_UPLOAD_SIZE, {
-                message: 'File size must be less than 3MB'
-            })
-            .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+            .refine((file) => file === undefined || ACCEPTED_FILE_TYPES.includes(file.type), {
                 message: 'File must be an Image'
             })
 });

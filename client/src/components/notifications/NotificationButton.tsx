@@ -1,4 +1,3 @@
-
 import { Heart } from "lucide-react"
 import { Button } from "../ui/button"
 import {
@@ -18,29 +17,28 @@ const NotificationButton = () => {
     const { user } = useGlobalContext();
 
     const unseenNotifications = notifications?.filter((data) => !data.seen);
-    const hasUnseenNotifications = !!unseenNotifications?.length;
 
     useEffect(() => {
-
         const notificationSound = new Audio('/sounds/notification.mp3');
 
         const handleNewNotification = (newNotification: NotifyType) => {
-            // console.log('New notification:', newNotification);
-            if (newNotification) {
-                // check the user is same as the logged in user
-                if (newNotification.user === user?._id) {
-                    notificationSound.play();
-                }
-                refetch()
+            if (newNotification && newNotification.user === user?._id) {
+                notificationSound.play();
+                refetch();
             }
-
         };
-        // Listen for real-time notifications
+
+        const handleDeleteNotification = () => {
+            refetch();
+        };
+
         socket.on('notification', handleNewNotification);
+        socket.on('delete-notification', handleDeleteNotification);
 
         // Cleanup on unmount
         return () => {
             socket.off('notification', handleNewNotification);
+            socket.off('delete-notification', handleDeleteNotification);
         };
 
     }, [refetch, user]);
@@ -49,7 +47,7 @@ const NotificationButton = () => {
         <Popover>
             <PopoverTrigger asChild>
                 <Button variant={"ghost"} size={"icon"}>
-                    {hasUnseenNotifications ?
+                    {unseenNotifications && unseenNotifications.length > 0 ?
                         <Heart className=" h-4 w-4" fill={"#FF0059"} stroke={"#FF0059"} />
                         :
                         <Heart className="h-4 w-4" />
@@ -65,5 +63,4 @@ const NotificationButton = () => {
     )
 }
 
-export default NotificationButton
-
+export default NotificationButton;

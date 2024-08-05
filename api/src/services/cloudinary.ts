@@ -29,7 +29,7 @@ export async function uploadImage(req: Request, res: Response) {
     try {
         // Upload an image
         const uploadResult = await cloudinary.uploader.upload(file, {
-            public_id: 'logo',
+            public_id: ' media',
         });
 
         // console.log({ uploadResult });

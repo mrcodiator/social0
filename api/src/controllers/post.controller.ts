@@ -45,7 +45,7 @@ export const createPost = async (req: Request, res: Response) => {
                 await Notification.create({
                     user: follower?.user,
                     type: "like",
-                    message: `@${req.user?.username} liked your post`,
+                    message: `@${req.user?.username} just posted a new post`,
                     action: newPost?._id,
                 });
             }
@@ -134,6 +134,9 @@ export const likePost = async (req: Request, res: Response) => {
                 message: `@${req.user?.username} liked your post`,
                 action: updatedPost?._id,
             });
+
+            // console.log("NEW NOTIFICATION: ", newNotification);
+
         }
 
         return sendResponse(res, successMessages.POST_LIKED, updatedPost);
@@ -163,6 +166,17 @@ export const dislikePost = async (req: Request, res: Response) => {
             { $pull: { likes: { user: userObjectId } } },
             { new: true }
         );
+
+        // delete notification
+        const deletedNotification = await Notification.findOneAndDelete({
+            action: id, // Match the post ID used in the likePost function
+            user: post.user, // Match the user who received the notification
+        });
+
+        io.emit("delete-notification", deletedNotification?._id);
+
+        // console.log("DELETED NOTIFICATION: ", deletedNotification);
+
 
         return sendResponse(res, successMessages.POST_DISLIKED, dislikedPost);
     } catch (error) {
@@ -223,6 +237,18 @@ export const deleteComment = async (req: Request, res: Response) => {
         if (!comment) {
             return sendResponse(res, errorMessages.COMMENT_NOT_FOUND);
         }
+
+        // delete notification
+        const deletedNotification = await Notification.findOneAndDelete({
+            action: comment._id,
+            user: comment.user._id
+        })
+
+        // console.log("DELETED NOTIFICATION: ", deletedNotification);
+
+
+        io.emit("delete-notification", deletedNotification?._id);
+
         return sendResponse(res, successMessages.COMMENT_DELETED, comment);
     } catch (error) {
         console.log(error);
