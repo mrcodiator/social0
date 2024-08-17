@@ -37,6 +37,9 @@ export const createPost = async (req: Request, res: Response) => {
     try {
         const { content, media } = req.body;
         const newPost = await Post.create({ content, media, user: req.user?.id });
+
+        // console.log(newPost);
+
         const followers = await User.findById(req.user?.id).populate("followers.user");
 
         if (followers) {

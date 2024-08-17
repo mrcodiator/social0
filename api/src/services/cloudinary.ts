@@ -11,6 +11,9 @@ configDotenv();
 export async function uploadImage(req: Request, res: Response) {
     const file = req.file?.path;
 
+    console.log("File: ", file);
+
+
     if (!file) {
         throw new Error('No file provided');
     }
@@ -28,11 +31,9 @@ export async function uploadImage(req: Request, res: Response) {
 
     try {
         // Upload an image
-        const uploadResult = await cloudinary.uploader.upload(file, {
-            public_id: ' media',
-        });
+        const uploadResult = await cloudinary.uploader.upload(file);
 
-        // console.log({ uploadResult });
+        console.log({ "Result: ": uploadResult });
 
         return sendResponse(res, successMessages.SUCCESS, { url: uploadResult.url });
     } catch (error) {
