@@ -33,7 +33,7 @@ export const useCreatePost = () => {
 
             const media = values.media ? await upload(values.media) : undefined;
 
-            console.log({ media: media });
+            // console.log({ media: media });
 
             const data = { ...values, media };
             // const data = { ...values, media: "https://images.pexels.com/photos/8351272/pexels-photo-8351272.jpeg?auto=compress&cs=tinysrgb&w=800" };

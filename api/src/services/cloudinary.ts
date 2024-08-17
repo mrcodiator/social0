@@ -11,7 +11,7 @@ configDotenv();
 export async function uploadImage(req: Request, res: Response) {
     const file = req.file?.path;
 
-    console.log("File: ", file);
+    // console.log("File: ", file);
 
 
     if (!file) {
@@ -33,7 +33,7 @@ export async function uploadImage(req: Request, res: Response) {
         // Upload an image
         const uploadResult = await cloudinary.uploader.upload(file);
 
-        console.log({ "Result: ": uploadResult });
+        // console.log({ "Result: ": uploadResult });
 
         return sendResponse(res, successMessages.SUCCESS, { url: uploadResult.url });
     } catch (error) {
