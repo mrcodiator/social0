@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "../components/ui/use-toast"; // Adjust this import based on your project structure
 import { baseUrl } from "../lib/base-url";
 import { useGlobalContext } from "./use-global";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 interface FetchDataResponse<T> {
@@ -25,7 +26,7 @@ export const useFetchData = <T = unknown>(url: string | undefined): UseFetchData
     const [error, setError] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true); // Initially set loading to true
     const { loading: globalLoading, setAuth } = useGlobalContext();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const fetchData = useCallback(async () => {
         setLoading(true);
@@ -52,6 +53,7 @@ export const useFetchData = <T = unknown>(url: string | undefined): UseFetchData
                     toast({ title: "Unauthorized. Please login.", variant: "destructive" });
                     setAuth(false);
                     localStorage.removeItem("token");
+                    navigate("/sign-in");
                 }
                 const errorMessage = err.response?.data?.message || "An error occurred.";
                 toast({ title: errorMessage, variant: "destructive" });
