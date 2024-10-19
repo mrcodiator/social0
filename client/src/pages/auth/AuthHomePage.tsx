@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Button } from "../../components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Github } from "lucide-react"
 
 const AuthHomePage = () => {
     return (
@@ -14,6 +14,11 @@ const AuthHomePage = () => {
                 <Link to={"/sign-in"}>
                     <Button variant={"secondary"} size={"lg"}>
                         Sign In <ArrowRight className=" h-4 w-4 ml-2" />
+                    </Button>
+                </Link>
+                <Link to={"https://github.com/mrcodiator/social0"}>
+                    <Button size={"lg"} variant={"outline"}>
+                        <Github className=" h-4 w-4 mr-2" />  Github
                     </Button>
                 </Link>
             </div>
